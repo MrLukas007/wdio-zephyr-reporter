@@ -21,12 +21,17 @@ let WdioZephyrReporter = require('./packages/wdio-zephyr-reporter/lib/wdio-zephy
 
     reporters: ['spec', WdioZephyrReporter],
     reporterOptions: {
-      domain: "yourdomain.jira.com",
-      username: "username",
-      password: "password",
-      projectId: 1,
-      cycleId: 1,
-      cycleName: "My test cycle"
+        zephyr: {
+            domain: "yourdomain.jira.com",
+            username: "username",
+            password: "password",
+            projectId: 1,
+            projectName: "FSA",
+            cycleId: 12,
+            cycleName: "Release 0.0.1",
+            folderId: 123,   
+            folderName: "Patch 0.0.1a"   
+        }
     }
 ```
 
@@ -48,11 +53,17 @@ Only passed or failed tests will be published. Skipped or pending tests will not
 
 **password**: *string* password or API token for user
 
-**projectId**: *number* projet number with which the tests are associated
+**projectId**: *number* (optional) project number with which the tests are associated
 
-**cycleId**: *number* cycle number with which the tests are associated
+**projectName**: *string* project name with which the tests are associated. It must be unquie accross the given JIRA domain
 
-**cycleName**: *string* (optional) name of the test cycle with which the tests are associated
+**cycleId**: *number* (optional) cycle number which contains the tests to be executed
+
+**cycleName**: *string* name of the test cycle which contains the tests to be executed. It must be unique within the given project
+
+**folderId**: *number* (optional) folder number which contains the tests to be executed
+
+**folderName**: *string* (optional) name of the folder which contains the tests to be executed. It must be unique within the given cycle
 
 
 ## References
